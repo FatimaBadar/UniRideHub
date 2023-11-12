@@ -5,9 +5,11 @@ const Home = () => {
     return (
         <>
             <Navbar />
-            <div>
+            <div className="bg-dark text-white">
                 Home
             </div>
         </>
     );
 }
+
+export default Home;
