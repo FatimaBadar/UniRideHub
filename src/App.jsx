@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Home from './pages/Home';
+import Profile from './pages/Profile';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 
   // other routes defined here
