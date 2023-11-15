@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState} from 'react'
 import './App.css'
 import Home from './pages/Home';
 import Profile from './pages/Profile';
@@ -6,7 +6,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
+import UserState from './Context/UserState';
 
 const router = createBrowserRouter([
   {
@@ -23,10 +23,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-
+ 
   return (
     <>
-      <RouterProvider router={router} />
+      
+      <UserState>
+        <RouterProvider router={router} />
+      </UserState>
     </>
   )
 }

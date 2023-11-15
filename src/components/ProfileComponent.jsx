@@ -1,56 +1,30 @@
 import React from 'react'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import UserContext from '../Context/userContext';
 
 export default function ProfileComponent() {
-    const [userData, setUserData] = useState([
-    {
-        userId: 1,
-        firstName: 'Kenneth',
-        lastName: 'Valdez',
-        phone: '(239) 816-9029',
-        totalRides: 320,
-        avgRating: 4.5,
-    },
-    ]);
-    // const userId = 1;
-    // const [firstname, setFirstName] = useState("");
-    // const [lastname, setLastName] = useState("");
-    // const [phone, setPhone] = useState("");
-    // const [totalRides, setTotalRides] = useState(0);
-    // const [avgRating, setAvgRating] = useState(0);
+    const {userId, setUserId} = useContext(UserContext);
+    const [userData, setUserData] = useState([]);
 
-    // useEffect(() => {
-    //     getUserData(userId)
-    // }, [userId])
+    useEffect(() => {
+        getUserData(userId);
+    }, [userId])
 
+    const getUserData = async (id) => {
+        // console.log("user id: ", userId);
+        // await axios.get(`https://localhost:5173/api/user/${id}`)
 
-    // const getUserData = async (id) => {
-
-    //     //const data = { firstname, lastname, phone, totalRides, avgRating };
-    //     fetch(`https://localhost:5173/api/user/${id}`)
-    //         .then(response => {
-    //             return response.json();
-    //         })
-    //         .then(data => {
-    //             console.log(data.firstname);
-    //         });
-    //     // try {
-    //     //     console.log("Fetching data for user ID:", id);
-    //     //     const response = await fetch(`https://localhost:5173/api/user/${id}`, {
-    //     //       method: "GET",
-    //     //       headers: {
-    //     //         "Content-Type": "application/json",
-    //     //       },
-    //     //     });
-
-    //     //     const result = await response.json();
-    //     //     console.log("Success:", result);
-    //     //     setUserData(result);
-    //     //   } 
-    //     //   catch (error) {
-    //     //     console.error("Error:", error);
-    //     //   } 
-    // }
+        await axios.get("https://mocki.io/v1/8ce0cf8b-9558-4792-badc-10a478cf9159")
+        .then((response) => {
+            // console.log(response);
+            // console.log(response.data);
+            setUserData(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
 
     return (
         <div className="container-xl px-4 mt-4">
@@ -59,10 +33,6 @@ export default function ProfileComponent() {
 
                 <div className="col-xl-8">
                     <div className="card mb-4">
-                        {/* {userData.length>0 ? ( */}
-                        {userData.map((item) => (
-                            <div key={item.userId}>
-
                                 <div className="card-header">Profile Details</div>
                                 <div className="card-body">
 
@@ -74,7 +44,7 @@ export default function ProfileComponent() {
                                             <h6 className="mb-0">First Name</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {item.firstName}
+                                            {userData.firstName}
                                         </div>
                                     </div>
                                     <hr />
@@ -83,7 +53,7 @@ export default function ProfileComponent() {
                                             <h6 className="mb-0">Last Name</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {item.lastName}
+                                            {userData.lastName}
                                         </div>
                                     </div>
                                     <hr />
@@ -92,7 +62,7 @@ export default function ProfileComponent() {
                                             <h6 className="mb-0">Phone number</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {item.phone}
+                                            {userData.phone}
                                         </div>
                                     </div>
                                     <hr />
@@ -101,7 +71,7 @@ export default function ProfileComponent() {
                                             <h6 className="mb-0">Rides Completed</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {item.totalRides}
+                                            {userData.totalRides}
                                         </div>
                                     </div>
                                     <hr />
@@ -110,14 +80,10 @@ export default function ProfileComponent() {
                                             <h6 className="mb-0">Average Rating</h6>
                                         </div>
                                         <div className="col-sm-9 text-secondary">
-                                            {item.avgRating}
+                                            {userData.avgRating}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
-                        {/* )} */}
-
                     </div>
                 </div>
             </div>
