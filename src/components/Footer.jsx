@@ -2,7 +2,7 @@ import './css/footer.css';
 
 const Footer = () => {
     return(
-        <div className="mt-5">
+        <div>
             <footer className="footer text-center text-white">
                 <div className="container p-4 pb-0">
                     <section className="mb-4">
