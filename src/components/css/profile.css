@@ -1,0 +1,59 @@
+#profile {
+    margin-top: 10%;
+}
+
+#profileBox{
+    margin-left: auto;
+    margin-right: auto;
+    transition: width 2s linear 1s;
+}
+
+#profileBox:hover {
+    width: 100px;
+    height: 100px;
+}
+
+#profileCard{
+        /* background-color:#FB8500; */
+        /* background-color:  */
+        background-color: rgba(0,0,0,.03);
+
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: transform 0.3s ease-in-out;
+        margin: 0 auto;
+        max-width: 600px;
+}
+
+#profileCard:hover {
+    transform: scale(1.03);
+}
+
+.card-header{
+
+    /* background-color: #8ECAE6; */
+    /* color: white; */
+    color: #FFB703;
+    font-weight: bolder;
+    font-size: 24px; 
+    margin-bottom: 10px; 
+}
+
+.card-body{
+    font-weight:normal;
+}
+h6{
+    color: #FB8500;
+    /* color: #FFB703; */
+    font-weight: bold;
+    /* font-size: 20px; */
+}
+
+.row {
+    margin-bottom: 15px; 
+}
+
+hr {
+    border-top: 1px solid #FB8500; 
+    /* border-top: 1px solid black; */
+    margin: 15px 0;
+}

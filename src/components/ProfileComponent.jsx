@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import UserContext from '../Context/userContext';
+import './css/profile.css';
 
 export default function ProfileComponent() {
     const {userId, setUserId} = useContext(UserContext);
@@ -27,12 +28,12 @@ export default function ProfileComponent() {
     }
 
     return (
-        <div className="container-xl px-4 mt-4">
-            <hr className="mt-0 mb-4" />
-            <div className="row">
+        <div  className="container-xl px-4 mt-4">
+            {/* <hr className="mt-0 mb-4" /> */}
+            <div id="profile" className="row">
 
-                <div className="col-xl-8">
-                    <div className="card mb-4">
+                <div id='profileBox' className="col-xl-8">
+                    <div id='profileCard' className="card mb-4">
                                 <div className="card-header">Profile Details</div>
                                 <div className="card-body">
 
