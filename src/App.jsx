@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Home from './pages/Home';
+import RideCreation from './pages/RideCreation';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -14,6 +15,11 @@ const router = createBrowserRouter([
   },
 
   // other routes defined here
+
+  {
+    path: "/createRide",
+    element: <RideCreation />,
+  },
 
 ]);
 
