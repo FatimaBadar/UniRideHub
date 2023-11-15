@@ -1,10 +1,16 @@
+.jumbotron{
+    /* background-color: #8ecae6; */
+}
+
 .display-4{
     font-weight: bold;
-    color: #FFB703;
+    color: #fb8500;
 }
 
 .lead{
-    color: #fb8500;
+    color: #FFB703;
+    font-weight: bolder;
+    font-size: 1.4rem;
 }
 
 .hero-btn{

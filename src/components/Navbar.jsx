@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import './css/navbar.css';
 
 const Navbar = (props) => {
@@ -16,10 +17,14 @@ const Navbar = (props) => {
             <div className="collapse navbar-collapse px-5" id="navbarNav">
                 <ul className="navbar-nav w-50 text-white">
                     <li className="nav-item mx-2">
-                        <a className="nav-link text-white active" aria-current="page" href="#" style={{fontFamily: 'Roboto, sans-serif'}}>Home</a>
+                        <Link to='/'>
+                            <a className="nav-link text-white active" aria-current="page" href="#" style={{fontFamily: 'Roboto, sans-serif'}}>Home</a>
+                        </Link>
                     </li>
                     <li className="nav-item mx-2">
-                        <a className="nav-link login-btn btn btn-primary" href="#" style={{backgroundColor: '#FFB703', padding: '5px 15px', fontFamily: 'Roboto, sans-serif', border: 'none'}}>{user ? "Logout" : "Login"}</a>
+                        <Link to='/auth'>
+                            <a className="nav-link login-btn btn btn-primary" href="#" style={{backgroundColor: '#FFB703', padding: '5px 15px', fontFamily: 'Roboto, sans-serif', border: 'none'}}>{user ? "Logout" : "Login"}</a>
+                        </Link>
                     </li>
                 </ul>
             </div>
