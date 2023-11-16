@@ -32,17 +32,47 @@ const marks = [
     return `${value}`;
   }
 export default function Form()  {
-    const [source, setsource] = useState('')
-    const [destination, setDestination] = useState('')
-
+    const [source, setSource]=useState('');
+    const [destination, setDestination] = useState('');
+    const [middleRoutes, setMiddleRoutes] = useState([]);
     const [time, setTime] = useState('')
     const [date, setDate] = useState('')
-    const [availableSeats, setAvailableSeats] = useState(20);
+    const [availableSeats, setAvailableSeats] = useState(1);
     const [fare, setFare] = useState(0);
+
+    const addMiddleRoute = (newRoute) => {
+        if (middleRoutes.length < 5) {
+            setMiddleRoutes([...middleRoutes, newRoute]);
+        } else {
+            alert('You can only add up to 5 middle routes');
+        }
+     };
+
+     const updateMiddleRoute = (index, value) => {
+        const updatedRoutes = [...middleRoutes];
+        updatedRoutes[index] = value;
+        setMiddleRoutes(updatedRoutes);
+      };
+    
+      const removeMiddleRoute = (index) => {
+        const updatedRoutes = [...middleRoutes];
+        updatedRoutes.splice(index, 1);
+        setMiddleRoutes(updatedRoutes);
+      };
+     
  
     function handleSubmit(event) {
         event.preventDefault();
-        console.log(source, destination, time, date,availableSeats) 
+        const middleRoutesString = middleRoutes.join('-');
+        console.log(source, destination,middleRoutesString, time, date,availableSeats,fare) 
+        setSource('');
+        setDestination('');
+        setMiddleRoutes([]);
+        setTime('');
+        setDate('');
+        setAvailableSeats(1);
+        setFare(0);
+
     }
    
     function handleCancel(event) {
@@ -60,7 +90,7 @@ export default function Form()  {
                         variant='outlined'
                         color='warning'
                         label="Source"
-                        onChange={e => setsource(e.target.value)}
+                        onChange={e => setSource(e.target.value)}
                         value={source}
                         fullWidth
                         required
@@ -78,21 +108,53 @@ export default function Form()  {
                         focused
                     />
                 </Stack>
+                {middleRoutes.map((route, index) => (
+                <Stack spacing={2} direction="row" sx={{ marginBottom: 4 }}>
+                <React.Fragment key={index}>
+                    <TextField
+                    type="text"
+                    variant="outlined"
+                    color="warning"
+                    label={`Middle Route ${index + 1}`}
+                    onChange={(e) => updateMiddleRoute(index, e.target.value)}
+                    placeholder='Add middle route'
+                    value={route.someProperty}
+                    fullWidth
+                    focused
+                    />
+                    <Button
+                    variant="outlined"
+                    color="warning"
+                    onClick={() => removeMiddleRoute(index)}
+                    sx={{marginBottom:4,background:'#023047' ,color:'#FB8500',}}
+                    >
+                    Remove
+                    </Button>
+                    </React.Fragment>
+                    </Stack>
+                    ))}
+
+                    <Button v
+                    ariant="outlined" 
+                    color="warning" 
+                    onClick={addMiddleRoute} 
+                    sx={{marginBottom:4,background:'#FB8500' ,color:'#023047'}}>
+                    Add Middle Route
+                    </Button>
+
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
-                <TextField
-                        type="text"
+                    <TextField
+                        type="date"
                         variant='outlined'
                         color='warning'
-                        label="Middle Routes"
-                        onChange={e => setDestination(e.target.value)}
-                        value={destination}
+                        label="Date"
+                        onChange={e => setDate(e.target.value)}
+                        value={date}
                         fullWidth
                         required
                         focused
-                    />
-                </Stack>
-
-                <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
+                        sx={{mb: 4}}
+                        />
                 <TextField
                     type="time"
                     variant='outlined'
@@ -100,18 +162,6 @@ export default function Form()  {
                     label="Time"
                     onChange={e => setTime(e.target.value)}
                     value={time}
-                    fullWidth
-                    required
-                    focused
-                    sx={{mb: 4}}
-                    />
-                <TextField
-                    type="date"
-                    variant='outlined'
-                    color='warning'
-                    label="Date"
-                    onChange={e => setDate(e.target.value)}
-                    value={date}
                     fullWidth
                     required
                     focused
@@ -175,7 +225,7 @@ export default function Form()  {
                 
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4, justifyContent:'center'}}>
                 <Button variant="outlined" color="warning" type="submit" sx={{background:'#FB8500' ,color:'#023047'}}>Create</Button>
-                <Button variant="outlined" color="warning" sx={{background:'#219EBC' ,color:'#023047'}} type="">Cancel</Button>
+                <Button variant="outlined" color="warning" sx={{background:'#023047' ,color:'#FB8500'}} type="">Cancel</Button>
                 </Stack>
                 
             </form>
