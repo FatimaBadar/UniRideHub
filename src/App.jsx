@@ -2,11 +2,13 @@ import { useState} from 'react'
 import './App.css'
 import Home from './pages/Home';
 import Profile from './pages/Profile';
+import RequestedRide from './pages/RequestedRide';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import UserState from './Context/UserState';
+import RideState from './Context/RideState';
 
 const router = createBrowserRouter([
   {
@@ -17,7 +19,10 @@ const router = createBrowserRouter([
     path: "/profile",
     element: <Profile />,
   },
-
+  {
+    path: "/requestedRide",
+    element: <RequestedRide />,
+  },
   // other routes defined here
 
 ]);
@@ -28,7 +33,9 @@ function App() {
     <>
       
       <UserState>
+        <RideState>
         <RouterProvider router={router} />
+        </RideState>
       </UserState>
     </>
   )
