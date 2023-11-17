@@ -57,66 +57,66 @@ export default function RequestedRideComponent() {
     }
 
     return (
-        // <body className="RidePage">
-        <div class="card">
-            <div class="upper">
-                <div class="row">
-                    <div class="col-8 heading justify-content-center">
-                        <h2><b>Requested Ride Details</b></h2>
+        <body classNameName="bodyProfile">
+        <div className="Profilecard">
+            <div className="upperProfile">
+                <div className="row">
+                    <div className="col-8 heading1 ">
+                        <h3 id='requestedride'><b>Requested Ride Details</b></h3>
                     </div>
-                    <div class="col-4">
-                        <img class="img-fluid" src="https://i.imgur.com/Rzjor3M.png" />
+                    <div className="col-4">
+                        <img id='profileImage' className="img-fluid" src="https://i.imgur.com/Rzjor3M.png" />
                     </div>
                 </div>
 
-                {/* <div class="mb-3">
-                    <hr class="new1" />
+                {/* <div className="mb-3">
+                    <hr className="new1" />
                 </div> */}
 
-                <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Source</span>
-                    <span class="text-muted">{rideData.source}</span>
+                <div className="d-flex justify-content-between">
+                    <span className="font-weight-bold">Source</span>
+                    <span className="text-muted">{rideData.source}</span>
                 </div>
-                <hr />
-                <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Destination</span>
-                    <span class="text-muted">{rideData.destination}</span>
+                <hr  id='profilehr'/>
+                <div className="d-flex justify-content-between">
+                    <span className="font-weight-bold">Destination</span>
+                    <span className="text-muted">{rideData.destination}</span>
                 </div>
-                <hr />
-                <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Mid Routes</span>
-                    <span class="text-muted">{rideData.midRoutes}</span>
+                <hr id='profilehr'/>
+                <div className="d-flex justify-content-between">
+                    <span className="font-weight-bold">Mid Routes</span>
+                    <span className="text-muted">{rideData.midRoutes}</span>
                 </div>
-                <hr />
-                <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Fare</span>
-                    <span class="text-muted">{rideData.fare}</span>
+                <hr id='profilehr'/>
+                <div className="d-flex justify-content-between">
+                    <span className="font-weight-bold">Fare</span>
+                    <span className="text-muted">{rideData.fare}</span>
                 </div>
-                <hr />
-                <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Total Seats</span>
-                    <span class="text-muted">{rideData.totalSeats}</span>
+                <hr id='profilehr'/>
+                <div className="d-flex justify-content-between">
+                    <span className="font-weight-bold">Total Seats</span>
+                    <span className="text-muted">{rideData.totalSeats}</span>
                 </div>
-                <hr />
-                <div class="d-flex justify-content-between">
-                    <span class="font-weight-bold">Timings</span>
-                    <span class="text-muted">{rideData.timings}</span>
+                <hr id='profilehr'/>
+                <div className="d-flex justify-content-between">
+                    <span className="font-weight-bold">Timings</span>
+                    <span className="text-muted">{rideData.timings}</span>
                 </div>
 
-                {/* <div class="d-flex justify-content-between">
+                {/* <div className="d-flex justify-content-between">
                     <small>Tax</small>
                     <small>$200.00</small>
                 </div> */}
 
-                {/* <div class="text-center mt-5">
-                    <button class="btn btn-primary">Track your order</button>
+                {/* <div className="text-center mt-5">
+                    <button className="btn btn-primary">Track your order</button>
                 </div> */}
 
             </div>
-            <div class="lower">
-                <button class="btn">Track Ride</button>
+            <div className="lowerProfile">
+                <button id='trackRide' className="btn">Track Ride</button>
             </div>
-            <hr />
+            <hr id='profilehr'/>
 
             {rideConfirmation ? (
                 <p id='confirm'>
@@ -130,8 +130,8 @@ export default function RequestedRideComponent() {
                     /> */}
 
                     {!rideStart ? (
-                        <div class="text-center mt-5">
-                            <button id='startRide' onClick={rideStatus("start")} class="btn btn-primary">Start Ride</button>
+                        <div className="text-center mt-5">
+                            <button id='startRide' onClick={rideStatus("start")} className="btn btn-primary">Start Ride</button>
                         </div>
                     ) : (
                         <p>not sstarted</p>
@@ -139,8 +139,8 @@ export default function RequestedRideComponent() {
                     }
 
                     {!rideStop && rideStart ? (
-                        <div class="text-center mt-5">
-                            <button id='stopRide' onClick={rideStatus("stop")} class="btn btn-primary">Stop Ride</button>
+                        <div className="text-center mt-5">
+                            <button id='stopRide' onClick={rideStatus("stop")} className="btn btn-primary">Stop Ride</button>
                         </div>
                     ) : (
                         <p>not stopped</p>
@@ -149,7 +149,7 @@ export default function RequestedRideComponent() {
                 </p>
             ) : (
                 <p id='notconfirm'>
-                    <div class="lower">
+                    <div className="lowerProfile">
                         <Alert severity="info">Waiting for Confirmation from Rider</Alert>
                     </div>
                     {/* <img
@@ -161,10 +161,12 @@ export default function RequestedRideComponent() {
                 </p>
             )}
 
-            <hr />
-            <div id='rateRider' class="upper">
-                <div class="row">
-                    <div class="col-15 heading2">
+            <hr id='profilehr'/>
+            <div className="d-flex justify-content-center">
+
+            <div id='rateRider' className="upperProfile">
+                <div className="row">
+                    {/* <div className="col-15 heading2"> */}
                         <h5><b>Rate Rider</b></h5>
                         <Rating id='rating'
                             name="simple-controlled"
@@ -178,7 +180,7 @@ export default function RequestedRideComponent() {
             </div>
 
         </div >
-        // </body>
+  </body>
 
     );
 }

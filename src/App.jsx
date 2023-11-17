@@ -4,6 +4,9 @@ import Home from './pages/Home';
 import Profile from './pages/Profile';
 import RequestedRide from './pages/RequestedRide';
 import RideCreation from './pages/RideCreation';
+import UserAuth from './pages/UserAuth';
+import MyRide from './pages/MyRide';
+import BookRide from './pages/BookRide';
 
 import {
   createBrowserRouter,
@@ -11,11 +14,6 @@ import {
 } from "react-router-dom";
 import UserState from './Context/UserState';
 import RideState from './Context/RideState';
-
-import UserAuth from './pages/UserAuth';
-import Home from './pages/Home';
-import MyRide from './pages/MyRide';
-import BookRide from './pages/BookRide';
 
 const router = createBrowserRouter([
   {
