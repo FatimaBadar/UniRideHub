@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import './App.css'
+import Home from './pages/Home';
+import RideCreation from './pages/RideCreation';
 
 import {
   createBrowserRouter,
@@ -30,6 +32,11 @@ const router = createBrowserRouter([
   {
     path: "/bookride",
     element: <BookRide />,
+  },
+
+  {
+    path: "/createRide",
+    element: <RideCreation />,
   },
 
 ]);
