@@ -8,7 +8,8 @@ import {
 
 import UserAuth from './pages/UserAuth';
 import Home from './pages/Home';
-
+import MyRide from './pages/MyRide';
+import BookRide from './pages/BookRide';
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,16 @@ const router = createBrowserRouter([
   {
     path: "/auth",
     element: <UserAuth />,
+  },
+
+  {
+    path: "/myride",
+    element: <MyRide userType='driver'/>,
+  },
+
+  {
+    path: "/bookride",
+    element: <BookRide />,
   },
 
 ]);
