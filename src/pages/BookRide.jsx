@@ -16,7 +16,7 @@ const dummyData = [
     rideFare: '$20',
     source: 'City A',
     destination: 'City B',
-    middleRoutes: ['D', 'E', 'F'],
+    middleRoutes: ['P', 'E', 'F'],
   },
   {
     name: 'John Doe',
