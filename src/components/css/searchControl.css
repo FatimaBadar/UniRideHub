@@ -1,0 +1,19 @@
+/* styles.css */
+.leaflet-control-geosearch {
+    background-color: white;
+    color: black;
+    width:100%
+   }
+   
+   .leaflet-control-geosearch input[type="text"] {
+    background-color: white;
+    color: black;
+    width:100%
+   }
+   
+   .leaflet-control-geosearch .results {
+    background-color: white;
+    color: black;
+    width:100%
+   }
+   
