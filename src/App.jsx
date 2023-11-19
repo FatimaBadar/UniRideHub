@@ -7,14 +7,12 @@ import RideCreation from './pages/RideCreation';
 import UserAuth from './pages/UserAuth';
 import MyRide from './pages/MyRide';
 import BookRide from './pages/BookRide';
-
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import UserState from './Context/UserState';
 import RideState from './Context/RideState';
-
 
 
 const router = createBrowserRouter([
