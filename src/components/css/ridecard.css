@@ -18,6 +18,15 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
   }
+  .all-rides{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
   .ride-card {
     position: relative;
     width: 700px;
