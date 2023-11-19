@@ -64,6 +64,8 @@ export default function Form()  {
     function handleSubmit(event) {
         event.preventDefault();
         const middleRoutesString = middleRoutes.join('-');
+        <Map source={source} />
+
         console.log(source, destination,middleRoutesString, time, date,availableSeats,fare) 
         setSource('');
         setDestination('');
