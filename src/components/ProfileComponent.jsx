@@ -29,52 +29,52 @@ export default function ProfileComponent() {
     }
 
     return (
-        <div class="page-content page-container" id="page-content">
-            <div class="padding1">
-                <div class="container d-flex justify-content-center">
-                    <div class="col-xl-12 col-md-16">
-                        <div class="card user-card-full">
-                            <div id='profileCard' class="row m-l-0 m-r-0">
-                                <div class="col-sm-4 bg-c-lite-green user-profile">
-                                    <div class="card-block text-center text-white">
-                                        <div class="m-b-25">
-                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image" />
+        <div className="page-content page-container" id="page-content">
+            <div className="padding1">
+                <div className="container d-flex justify-content-center">
+                    <div className="col-xl-12 col-md-16">
+                        <div className="cardProfilePage user-card-full">
+                            <div id='profileCard' className="row m-l-0 m-r-0">
+                                <div className="col-sm-4 bg-c-lite-green user-profile">
+                                    <div className="card-block text-center text-white">
+                                        <div className="m-b-25">
+                                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" className="img-radius" alt="User-Profile-Image" />
                                         </div>
 
-                                        {/* <h6 class="f-w-600">  */}
+                                        {/* <h6 className="f-w-600">  */}
                                         <Rating id='ratingProfile' name="read-only" value={userData.avgRating} readOnly />
                                         {/* </h6> */}
                                         <p>{userData.firstName + " " + userData.lastName}</p>
-                                        <i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
+                                        <i className=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i>
                                     </div>
                                 </div>
-                                <div class="col-sm-8">
-                                    <div class="card-block">
-                                        <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Personal Information</h6>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">First Name</p>
-                                                <h6 class="text-muted f-w-400">{userData.firstName}</h6>
+                                <div className="col-sm-8">
+                                    <div className="card-block">
+                                        <h6 className="m-b-20 p-b-5 b-b-default f-w-600">Personal Information</h6>
+                                        <div className="row">
+                                            <div className="col-sm-6">
+                                                <p className="m-b-10 f-w-600">First Name</p>
+                                                <h6 className="text-muted f-w-400">{userData.firstName}</h6>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Last Name</p>
-                                                <h6 class="text-muted f-w-400">{userData.lastName}</h6>
+                                            <div className="col-sm-6">
+                                                <p className="m-b-10 f-w-600">Last Name</p>
+                                                <h6 className="text-muted f-w-400">{userData.lastName}</h6>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Phone Number</p>
-                                                <h6 class="text-muted f-w-400">{userData.phone}</h6>
+                                            <div className="col-sm-6">
+                                                <p className="m-b-10 f-w-600">Phone Number</p>
+                                                <h6 className="text-muted f-w-400">{userData.phone}</h6>
                                             </div>
 
                                         </div>
-                                        <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Rides</h6>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Total Rides Completed</p>
-                                                <h6 class="text-muted f-w-400">{userData.totalRides}</h6>
+                                        <h6 className="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Rides</h6>
+                                        <div className="row">
+                                            <div className="col-sm-6">
+                                                <p className="m-b-10 f-w-600">Total Rides Completed</p>
+                                                <h6 className="text-muted f-w-400">{userData.totalRides}</h6>
                                             </div>
-                                            <div class="col-sm-6">
-                                                <p class="m-b-10 f-w-600">Rating</p>
-                                                {/* <h6 class="text-muted f-w-400">  */}
+                                            <div className="col-sm-6">
+                                                <p className="m-b-10 f-w-600">Rating</p>
+                                                {/* <h6 className="text-muted f-w-400">  */}
                                                 <Rating id="ratingProfile" name="read-only" value={userData.avgRating} readOnly />
                                                 {/* </h6> */}
                                             </div>
