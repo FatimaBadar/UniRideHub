@@ -83,7 +83,7 @@ export default function Form()  {
  
     return (
         <React.Fragment>
-            <div class="main">
+            <div class="main formCard">
             <h2 class="main-heading" >Create Ride</h2>
             <form onSubmit={handleSubmit} action={<Link to="/ride" />}>
                 <Stack spacing={2} direction="row" sx={{marginBottom: 4}}>
