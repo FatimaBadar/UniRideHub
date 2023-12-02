@@ -50,7 +50,7 @@ const Signup = (props) => {
             
             <div className="d-grid mt-5">
                 <a href="#" onClick={() => {
-                    return props.handleRegister()
+                    return props.handleRegister
                 }}>
                     Already have an account? Sign in
                 </a>
