@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import {
   TextField,
   Button,
@@ -47,6 +47,8 @@ export default function Form() {
   const [date, setDate] = useState("");
   const [availableSeats, setAvailableSeats] = useState(1);
   const [fare, setFare] = useState(0);
+  const [mapImageFilename, setMapImageFileName] = useState("");
+  const fileInput = useRef(null);
 
   const addMiddleRoute = (newRoute) => {
     if (middleRoutes.length < 5) {
@@ -87,21 +89,39 @@ export default function Form() {
         const timeWithSeconds = `${time}:00`; // Add ":00" to the timef
         console.log(timeWithSeconds);
 
+        console.log(
+          source,
+          destination,
+          middleRoutesString,
+          time,
+          date,
+          availableSeats,
+          fare,
+          mapImageFilename
+        );
         // Create the new ride
-        const rideDTO = {
-          id: newId,
-          source: source,
-          destination: destination,
-          mid_routes: middleRoutesString,
-          date: date,
-          time: timeWithSeconds,
-          total_Seats: availableSeats,
-          fare: fare,
-        };
+        let formData = new FormData();
+
+        // Append all the necessary fields to the FormData object
+        formData.append("id", newId);
+        formData.append("source", source);
+        formData.append("destination", destination);
+        formData.append("mid_routes", middleRoutesString);
+        formData.append("date", date);
+        formData.append("time", timeWithSeconds);
+        formData.append("total_Seats", availableSeats);
+        formData.append("fare", fare);
+        formData.append("MapImageFileName", mapImageFilename); // Add the MapImageFileName field
+        // if (fileInput.current.files && fileInput.current.files.length > 0) {
+        formData.append("file", fileInput.current.files[0]); // Add the file
 
         // Make a POST request to create the new ride
         axios
-          .post("https://localhost:7249/api/CreateRide", rideDTO)
+          .post("https://localhost:7249/api/CreateRide", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          })
           .then((response) => {
             console.log(response);
           })
@@ -113,15 +133,6 @@ export default function Form() {
         console.log(error);
       });
 
-    console.log(
-      source,
-      destination,
-      middleRoutesString,
-      time,
-      date,
-      availableSeats,
-      fare
-    );
     setSource("");
     setDestination("");
     setMiddleRoutes([]);
@@ -129,6 +140,7 @@ export default function Form() {
     setDate("");
     setAvailableSeats(1);
     setFare(0);
+    setMapImageFileName("");
   }
 
   return (
@@ -212,7 +224,7 @@ export default function Form() {
               focused
               sx={{ mb: 4 }}
               inputProps={{
-                min: new Date().toISOString().split('T')[0], // Set the max date to the current date
+                min: new Date().toISOString().split("T")[0], // Set the max date to the current date
               }}
             />
             <TextField
@@ -269,20 +281,16 @@ export default function Form() {
             color="warning"
           />
           <Stack>
-            <TextField
-              id="outlined-number"
-              label="Set Map"
-              type="number"
-              InputLabelProps={{
-                shrink: true,
-              }}
-              min={0}
-              value={fare}
-              onChange={(e) => setFare(e.target.value)}
+            <label htmlFor="file-input" className="upload-button">
+              Upload Map Image
+            </label>
+            <input
+              label="Upload Image"
+              className="file-input"
+              type="file"
               required
-              // focused
-              sx={{ mb: 4 }}
-              color="warning"
+              ref={fileInput}
+              onChange={(e) => setMapImageFileName(e.target.files[0].name)}
             />
           </Stack>
 
