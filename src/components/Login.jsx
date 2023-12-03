@@ -1,8 +1,19 @@
-import { useState } from "react";
-import axios from 'axios';
+import { useState, useContext } from "react";
+import UserContext from "../Context/userContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 const Login = (props) => {
-  const [userInfo, setUserInfo] = useState(null);
+
+  const navigate = useNavigate()
+  const { 
+    userId, 
+    setUserId,
+    jwt,
+    setJwt 
+  } = useContext(UserContext);
+
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,27 +25,40 @@ const Login = (props) => {
     setPassword(event.target.value);
   };
 
-
+  const setUser = async(id, jwt) => {
+    setUserId(id)
+    setJwt(jwt)
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Make an API request
     try {
-      const response = await axios.post("https://localhost:7249/api/Auth/authenticate", {
-        method: "POST",
-        body: JSON.stringify({ phoneNumber, password }),
-      });
+      const response = await axios.post(
+        "https://localhost:7249/api/Auth/authenticate",
+        { mobile: phoneNumber, password: password },
+        { headers: { "Content-Type": "application/json" } }
+      );
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log("API response:", data);
-        setUserInfo(data);
+      if (response.data) {
+        console.log(response.data)
+        // let id = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString())
+        let id = response.data["item2"].toString();
+        let jwt = response.data["item1"];
+
+        await setUser(id, jwt)
+
+        if(userId != -1 && jwt != ''){
+          
+          localStorage.setItem("id", id);
+          localStorage.setItem("jwt", jwt);
+
+          navigate('/')  
+        }
       } else {
-        // Handle errors
-        console.error("API request failed:", response.statusText);
+        console.error("Sorry! Can't log you in.");
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      alert("Invalid Username or password");
     }
   };
 

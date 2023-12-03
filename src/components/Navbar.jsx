@@ -1,10 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from 'react-router-dom';
 import './css/navbar.css';
+import UserContext from "../Context/userContext";
 
 const Navbar = (props) => {
     
-    const user = null;
+    const {userId, jwt, setUserId, setJwt} = useContext(UserContext);
+
+    const handleLogout = () => {
+        setUserId(-1)
+        setJwt('')
+        localStorage.setItem("id", "-1");
+        localStorage.setItem("jwt", jwt);
+    }
+
+    useEffect(() => {
+        console.log(userId, jwt)
+    }, []);
 
     return (
         <nav className="navbar navbar-expand-sm sticky-top" style={{backgroundColor: '#219ebc', padding: '10px 15px'}}>
@@ -23,7 +35,13 @@ const Navbar = (props) => {
                     </li>
                     <li className="nav-item mx-2">
                         <Link to='/auth'>
-                            <a className="nav-link login-btn btn btn-primary" href="#" style={{backgroundColor: '#FFB703', padding: '5px 15px', fontFamily: 'Roboto, sans-serif', border: 'none'}}>{user ? "Logout" : "Login"}</a>
+                            <a 
+                                className="nav-link login-btn btn btn-primary" 
+                                href="#" 
+                                onClick={handleLogout}
+                                style={{backgroundColor: '#FFB703', padding: '5px 15px', fontFamily: 'Roboto, sans-serif', border: 'none'}}>
+                                    {userId != -1 ? "Logout" : "Login"}
+                                </a>
                         </Link>
                     </li>
                 </ul>
