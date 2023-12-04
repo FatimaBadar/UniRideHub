@@ -22,7 +22,7 @@ const Navbar = (props) => {
 
     useEffect(() => {
         console.log(userId, jwt)
-    }, []);
+    }, [userId]);
 
     return (
         <nav className="navbar navbar-expand-sm sticky-top" style={{backgroundColor: '#219ebc', padding: '10px 15px'}}>
@@ -46,7 +46,7 @@ const Navbar = (props) => {
                                 href="#" 
                                 onClick={handleLogout}
                                 style={{backgroundColor: '#FFB703', padding: '5px 15px', fontFamily: 'Roboto, sans-serif', border: 'none'}}>
-                                    {userId != -1 ? "Logout" : "Login"}
+                                    {userId && userId != -1 ? "Logout" : "Login"}
                                 </a>
                         </Link>
                     </li>

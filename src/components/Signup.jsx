@@ -4,8 +4,8 @@ import UserContext from "../Context/userContext";
 import { useNavigate } from "react-router-dom";
 
 const Signup = (props) => {
-
   const navigate = useNavigate();
+
   const { userId, setUserId, jwt, setJwt } = useContext(UserContext);
   const [phone, setPhone] = useState("");
   const [fname, setFname] = useState("");
@@ -13,22 +13,19 @@ const Signup = (props) => {
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
   const [error, setError] = useState("");
-  const [submitted, setSubmitted] = useState(false)
+  const [submitted, setSubmitted] = useState(false);
 
-  
-  const setUser = async(id, token) => {
-    setUserId(id)
-    setJwt(token)
-  }
+  const setUser = async (id, token) => {
+    setUserId(id);
+    setJwt(token);
+  };
 
-
-  useEffect( () => {
-    setUser()
-  })
+  useEffect(() => {
+    setUser();
+  });
 
   const formValidated = () => {
-
-    // const isValidNum = (number) => {  
+    // const isValidNum = (number) => {
     //   // for(let i = 0; i < number.length; i++) {
     //   //   if(number[i] < "0" || number[i] > "9"){
     //   //     return false;
@@ -36,7 +33,7 @@ const Signup = (props) => {
     //   // }
     //   return true;
     // }
-    
+
     // let e = "";
     // if (password != confirmPass){
     //   e = "Passwords don't match. Try Again!"
@@ -54,7 +51,7 @@ const Signup = (props) => {
     // }
     // return false;
     return true;
-  }
+  };
 
   const handlePhone = (event) => {
     setPhone(event.target.value);
@@ -70,49 +67,37 @@ const Signup = (props) => {
   };
   const handleConfirmPass = (event) => {
     setConfirmPass(event.target.value);
-  }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (formValidated()) {
       try {
-        
         const data = {
           id: 0,
           mobile: phone,
           first_name: fname,
           last_name: lname,
           password: password,
-       };
-
-        console.log(data);
+        };
 
         const res = await axios.post(
           "https:localhost:7249/api/Auth/register",
           data,
           { headers: { "Content-Type": "application/json" } }
         );
-        if (res.data.statusCode === "200") {
-          let id = response.data["item2"].toString();
-          let token = response.data["item1"];
-
-          await setUser(id, token);
-          
-          if(userId != -1 && jwt != ''){
-            console.log(userId, jwt)
-            localStorage.setItem("id", userId);
-            localStorage.setItem("id", jwt);
-            navigate('/')
-          }
-          
+        console.log(res.data)
+        if (res.data) {
+          alert("User Created Successfully. Press Ok to redirect to Login page...")
+          props.handleRegister()
         }
       } catch (error) {
+        console.error(error);
         alert("User Already Exists!");
       }
-    }
-    else{
-      alert(error)
+    } else {
+      alert(error);
     }
   };
 
