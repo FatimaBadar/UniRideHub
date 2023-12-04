@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef,useContext } from "react";
 import {
   TextField,
   Button,
@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import UserContext from '../Context/userContext';
+
 
 import "./css/form.css";
 
@@ -49,6 +51,7 @@ export default function Form() {
   const [fare, setFare] = useState(0);
   const [mapImageFilename, setMapImageFileName] = useState("");
   const fileInput = useRef(null);
+  const { userId } = useContext(UserContext);
 
   const addMiddleRoute = (newRoute) => {
     if (middleRoutes.length < 5) {
@@ -81,7 +84,7 @@ export default function Form() {
       .then((response) => {
         // Find the ride with the highest ID
         const highestId = Math.max(...response.data.map((ride) => ride.id));
-
+      
         // Increment the highest ID by one
         const newId = highestId + 1;
         console.log(newId);
@@ -99,10 +102,10 @@ export default function Form() {
           fare,
           mapImageFilename
         );
-        // Create the new ride
+  
         let formData = new FormData();
 
-        // Append all the necessary fields to the FormData object
+        
         formData.append("id", newId);
         formData.append("source", source);
         formData.append("destination", destination);
@@ -111,11 +114,11 @@ export default function Form() {
         formData.append("time", timeWithSeconds);
         formData.append("total_Seats", availableSeats);
         formData.append("fare", fare);
-        formData.append("MapImageFileName", mapImageFilename); // Add the MapImageFileName field
-        // if (fileInput.current.files && fileInput.current.files.length > 0) {
-        formData.append("file", fileInput.current.files[0]); // Add the file
+        formData.append("MapImageFileName", mapImageFilename); 
+        formData.append("file", fileInput.current.files[0]); 
+        formData.append("userId", userId);
 
-        // Make a POST request to create the new ride
+
         axios
           .post("https://localhost:7249/api/CreateRide", formData, {
             headers: {

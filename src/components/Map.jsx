@@ -1,10 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import {
-  MapContainer,
-  TileLayer,
-  FeatureGroup,
-} from "react-leaflet";
+import { MapContainer, TileLayer, FeatureGroup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
@@ -15,7 +11,7 @@ import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 import SearchControl from "./SearchControl";
 import html2canvas from "html2canvas";
-import './css/map.css';
+import "./css/map.css";
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
@@ -23,44 +19,49 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow,
 });
 
-import { useMap } from 'react-leaflet';
+import { useMap } from "react-leaflet";
 
 const SnapshotButton = () => {
- const map = useMap();
+  const map = useMap();
 
- const takeSnapshot = () => {
- html2canvas(map.getContainer()).then(function(canvas) {
- // Convert the canvas to a Blob
- canvas.toBlob(function(blob) {
-  // Create an object URL for the Blob
-  let url = URL.createObjectURL(blob);
+  const takeSnapshot = () => {
+    html2canvas(map.getContainer()).then(function (canvas) {
+      canvas.toBlob(function (blob) {
+        let url = URL.createObjectURL(blob);
+        let a = document.createElement("a");
+        a.href = url;
+        a.download = "map-snapshot.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      });
+    });
+  };
 
-  // Create a download link
-  let a = document.createElement('a');
-  a.href = url;
-  a.download = 'map-snapshot.png';
-
-  // Append the anchor to the body
-  document.body.appendChild(a);
-
-  // Start the download
-  a.click();
-
-  // Remove the anchor from the body
-  document.body.removeChild(a);
- });
- });
- };
-
- return (
- <button className="Take-snap" onClick={takeSnapshot} style={{background:'#fb8500',padding:'10px',borderRadius:'10px',color:'#023047', marginRight:'50px',marginTop:'20px',position: 'absolute', top: '10px', right: '10px', zIndex: 1000 }}>
- Take Snapshot
- </button>
- );
+  return (
+    <button
+      className="Take-snap"
+      onClick={takeSnapshot}
+      style={{
+        background: "#fb8500",
+        padding: "10px",
+        borderRadius: "10px",
+        color: "#023047",
+        marginRight: "50px",
+        marginTop: "20px",
+        position: "absolute",
+        top: "10px",
+        right: "10px",
+        zIndex: 1000,
+      }}
+    >
+      Take Snapshot
+    </button>
+  );
 };
 
 export default function Map() {
-  const [position, setPosition] = useState([24.8422, 67.0516]); // Karachi city coordinates
+  const [position, setPosition] = useState([24.8422, 67.0516]);
   const markerRef = useRef(null);
   const _created = (e) => console.log(e);
   const handleLocationSelect = (location) => {
