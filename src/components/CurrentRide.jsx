@@ -1,8 +1,34 @@
 // CurrentRide component
 import React from 'react';
 import './css/ridecard.css';
+import { useState, useEffect, useContext } from 'react';
+import axios from 'axios';
+import UserContext from '../Context/userContext';
+import Rating from '@mui/material/Rating';
+
+
 
 const CurrentRide = () => {
+
+  const {userId, setUserId} = useContext(UserContext);
+  const [userData,setUserData] = useState([]);
+  const [rideData, setRideData] = useState([]);
+  const [userRideData, setUserRideData] = useState([]);
+
+  useEffect(()=>{
+    getUserData(userId)
+  },[userId])
+
+  const getUserData = async (id) => {
+    await axios.get(`https://localhost:7249/api/User/GetUser/${id}`)
+    .then((response) =>{
+      console.log(response.data.responseData)
+      setUserData(response.data.responseData)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
+
   // Dummy data for current ride
   const currentRideData = {
     name: 'John Doe',

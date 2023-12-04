@@ -13,19 +13,8 @@ const PreviousRides = () => {
   const [userRideData, setUserRideData] = useState([]);
 
   useEffect(() => {
-    getUserData(userId);
     getUserRideData(userId);
   }, [userId])
-
-  const getUserData = async (id) => {
-    await axios.get(`https://localhost:7249/api/User/GetUser/${id}`)
-    .then((response)=>{
-      console.log(response.data.responseData)
-      setUserData(response.data.responseData)
-    }).catch((error) => {
-      console.log(error)
-    })
-  }
 
   const getUserRideData = async (id) => {
     await axios.get( `https://localhost:7249/api/UserRide/GetUserRide/${id}`)
@@ -38,7 +27,7 @@ const PreviousRides = () => {
   }
 
   useEffect(()=>{
-    getRideData(userRideData)
+    getRideData(userRideData);
   },[userRideData])
 
   const getRideData = async (data) => {
@@ -55,43 +44,47 @@ const PreviousRides = () => {
     console.log(fetchedRideData)
     setRideData(fetchedRideData)
   }
+  
+  useEffect(() => {
+    getUserData(rideData);
+  },[rideData])
 
-  const previousRidesData = [
-    // Previous ride 1
-    {
-      name: 'Jane Smith',
-      phoneNumber: '987-654-3210',
-      carModel: 'Honda Accord',
-      rideTime: '10:00 AM',
-      source: 'X',
-      destination: 'Y',
-      middleRoutes: ['P', 'Q', 'R'],
-    },
-    {
-        name: 'Jane Smith',
-        phoneNumber: '987-654-3210',
-        carModel: 'Honda Accord',
-        rideTime: '10:00 AM',
-        source: 'X',
-        destination: 'Y',
-        middleRoutes: ['P', 'Q', 'R'],
-      },
-    // Previous ride 2...
-  ];
+  const getUserData = async (data) => {
+    const userIds = data.map((user) => user.userId);
+    //console.log(userIds)
+    const fetchedUserData = [];
+    for (const userId of userIds){
+      await axios.get(`https://localhost:7249/api/User/GetUser/${userId}`)
+      .then((response)=>{
+        //console.log(response.data)
+        fetchedUserData.push(response.data.responseData);
+      }).catch((error) => {
+        console.log(error)
+      })
+    }
+    console.log(fetchedUserData)
+    setUserData(fetchedUserData)
+  }
+
+  useEffect(() => {
+    console.log("This is userdata:", userData);
+  }, [userData]);
 
   return (
     <div className="previous-rides">
-      <h2>Rides History</h2>
+      <h2>All Rides</h2>
       {rideData.map((ride, index) => (
         <div key={index} className="ride-card">
           <div className="ride-info">
             <div className='ride-info'>
-            <p> <b>Name: </b>{userData.first_name + " " + userData.last_name}</p>
-            <p> <b>Phone Number: </b>{userData.mobile}</p>
-            <p> <b>User Type: </b>{userData.userType}</p>
+            {/* <p> <b>Name: </b>{userData[index].first_name + " " + userData[index].last_name}</p>
+            <p> <b>Phone Number: </b>{userData[index].mobile}</p> */}
+            {userData[index] && <p> <b>Name: </b>{userData[index].first_name + " " + userData[index].last_name}</p>}
+            {userData[index] && <p> <b>Phone Number: </b>{userData[index].mobile}</p>}
+            <p> <b>User Type: </b>{userRideData[index].user_type}</p>
             </div>
             <div className='ride-info'>
-            <p> <b>Ride ID: </b>{ride.id}</p>
+            <p> <b>Ride Status: </b>{userRideData[index].is_active ? 'Active' : 'Inactive'}</p>
             </div>
             <div className='ride-info'>
             <p> <b>Source: </b>{ride.source}</p>
