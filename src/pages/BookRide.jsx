@@ -1,10 +1,11 @@
 // App.js
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import RideDetailCard from '../components/RideDetails';
 import SearchBar from '../components/SearchBar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './css/bookride.css';
+import RideContext from '../Context/RideContext';
 
 const dummyData = [
   // Your dummy ride data here
@@ -33,7 +34,8 @@ const dummyData = [
 const BookRide = () => {
     const [rides, setRides] = useState(dummyData);
     const [filteredRides, setFilteredRides] = useState(dummyData);
-  
+    const {bookedRide} = useContext(RideContext)
+    console.log("This is booked Ride:",bookedRide)
     const filterRides = (filters) => {
       const { filterType, searchTerm } = filters;
       const filtered = rides.filter((ride) => {

@@ -36,7 +36,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: start;
     text-align: left;
     padding: 30px;
@@ -85,4 +85,10 @@
   .ride-card > * {
     position: relative;
     z-index: 1;
+  }
+  .book-button {
+    align-self: flex-end;
+    margin-top: auto;
+    border-radius: 20px;
+    width: 200px;
   }

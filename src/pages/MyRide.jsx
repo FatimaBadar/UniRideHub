@@ -11,7 +11,7 @@ const MyRide = ({ userType }) => {
     <div className="ride-page">
       <Navbar />
       
-      {userType === 'driver' ? (
+      {/* {userType === 'driver' ? (
         <>
 
           <CurrentRide />
@@ -22,7 +22,8 @@ const MyRide = ({ userType }) => {
 
           <PreviousRides />
         
-      )}
+      )} */}
+    <PreviousRides />
     <Footer />
     </div>
   );
