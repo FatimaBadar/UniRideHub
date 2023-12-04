@@ -8,10 +8,16 @@ const Navbar = (props) => {
     const {userId, jwt, setUserId, setJwt} = useContext(UserContext);
 
     const handleLogout = () => {
-        setUserId(-1)
-        setJwt('')
-        localStorage.setItem("id", "-1");
-        localStorage.setItem("jwt", jwt);
+        if(userId != -1){
+            setUserId(-1)
+            setJwt('')
+            localStorage.setItem("id", "-1");
+            localStorage.setItem("jwt", "");
+        } 
+        else{
+
+        }
+        
     }
 
     useEffect(() => {
