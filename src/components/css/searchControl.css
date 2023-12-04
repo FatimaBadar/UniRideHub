@@ -2,13 +2,15 @@
 .leaflet-control-geosearch {
     background-color: white;
     color: black;
-    width:100%
+    width:100%;
+    padding: 10px;
    }
    
    .leaflet-control-geosearch input[type="text"] {
     background-color: white;
     color: black;
-    width:100%
+    width:100%;
+    padding: 1opx;
    }
    
    .leaflet-control-geosearch .results {
@@ -16,4 +18,5 @@
     color: black;
     width:100%
    }
+
    
