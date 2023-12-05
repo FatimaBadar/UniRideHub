@@ -50,7 +50,7 @@ export default function Form() {
   const [fare, setFare] = useState(0);
   const [mapImageFilename, setMapImageFileName] = useState("");
   const fileInput = useRef(null);
-  const { userId } = useContext(UserContext);
+  const { userId,jwt } = useContext(UserContext);
 
   const addMiddleRoute = (newRoute) => {
     if (middleRoutes.length < 5) {
@@ -82,7 +82,7 @@ export default function Form() {
       .get("https://localhost:7249/api/CreateRide",{
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${jwt}`,
         },
       })
       .then((response) => {
@@ -125,7 +125,7 @@ export default function Form() {
           .post("https://localhost:7249/api/CreateRide", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${jwt}`,
             },
           })
           .then((response) => {
