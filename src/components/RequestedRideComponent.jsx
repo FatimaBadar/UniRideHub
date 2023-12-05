@@ -73,7 +73,7 @@ export default function RequestedRideComponent() {
                             <h3 id='requestedride'><b>Booked Ride</b></h3>
                         </div>
                         <div className="col-4">
-                            <img id='profileImage' className="img-fluid" src="https://i.imgur.com/Rzjor3M.png" />
+                            <img id='profileImage' className="img-fluid" src="./Rzjor3M.png" />
                         </div>
                     </div>
 
@@ -107,12 +107,12 @@ export default function RequestedRideComponent() {
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Total Seats</span>
-                                <span className="text-muted">{ride.total_seats}</span>
+                                <span className="text-muted">{ride.total_Seats}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between mb-2">
                                 <span className="font-weight-bold">Timings</span>
-                                <span className="text-muted">{ride.timings}</span>
+                                <span className="text-muted">{ride.time}</span>
                             </div>
 
                             {/* <div className="lowerProfile">
