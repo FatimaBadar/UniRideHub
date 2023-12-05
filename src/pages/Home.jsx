@@ -17,8 +17,10 @@ const Home = () => {
                     title="Are you a rider?"
                     subtitle="If you want to book a ride, you have come to the right place :)"
                     description="Tired of your daily commute problems in uni? Just click on the Book a Ride button. You can book from countless rides and track the progress. We also provide a map to know the track that the driver will follow. So hit up your colleagues and fellow uni mates and enjoy the drive with them!"
-                    link="Book Ride"
+                    link="Book a Ride"
+                    extraLink="Booked Rides"
                     nav = "/bookride"
+                    extranav="/"
                 />
             </div>
             
@@ -33,7 +35,7 @@ const Home = () => {
                     extranav="/myride"
                 />
             </div>
-
+            <div style={{padding: '50px'}}></div>
             <Footer /> 
         </>
     );
