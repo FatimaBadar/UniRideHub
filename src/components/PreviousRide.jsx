@@ -7,7 +7,7 @@ import './css/ridecard.css';
 
 const PreviousRides = () => {
   // Dummy data for previous rides
-  const {userId, setUserId} = useContext(UserContext);
+  const {userId, jwt, setUserId} = useContext(UserContext);
   const [userData,setUserData] = useState([]);
   const [rideData, setRideData] = useState([]);
   const [userRideData, setUserRideData] = useState([]);
@@ -21,7 +21,7 @@ const PreviousRides = () => {
     {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${jwt}`,
         },
       })
     .then((response) => {
@@ -44,7 +44,7 @@ const PreviousRides = () => {
       {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${jwt}`,
           },
         })
       .then((response) => {
@@ -70,7 +70,7 @@ const PreviousRides = () => {
       {
           headers: {
             "Content-Type": "multipart/form-data",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${jwt}`,
           },
         })
       .then((response)=>{
