@@ -20,7 +20,7 @@ const Home = () => {
                     link="Book a Ride"
                     extraLink="Booked Rides"
                     nav = "/bookride"
-                    extranav="/"
+                    extranav="/requestedRide"
                 />
             </div>
             

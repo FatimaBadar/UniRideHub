@@ -9,20 +9,20 @@ const RideDetailCard = ({ ride, user }) => {
 
   const {bookedRide, setBookedRide, rideConfirmation, setRideConfirmation} = useContext(RideContext)
   const [isBooked, setIsBooked] = useState(false)
-  const handleBook = () => {
+  console.log("start booked ride: ", bookedRide);
+
+  const handleBook = async() => {
     // console.log("ride check ", ride);
     // if (bookedRide.length === 0) {
+      setIsBooked(true); // disable the button
       setBookedRide([...bookedRide, ride]);
       console.log("booked ride: ", bookedRide);
-      setIsBooked(true); // disable the button
       setRideConfirmation(true);
     // } 
     // else {
-      // alert('You have already booked a ride.');
+    //   alert('You have already booked a ride.');
     // }
   };
-
-  // console.log("This is User:", user)
 
   return (
     <div className="all-rides">
@@ -34,7 +34,9 @@ const RideDetailCard = ({ ride, user }) => {
       <p>Source: {ride.source}</p>
       <p>Destination: {ride.destination}</p>
       <p>Middle Route: {ride.mid_routes}</p>
-      <button className='book-button' onClick={handleBook} disabled={isBooked}>{isBooked ? 'Booked' : 'Book'}</button>
+      <button className='book-button' onClick={handleBook} disabled={isBooked}>
+        {isBooked ? 'Booked' : 'Book'}
+        </button>
     </div>
     </div>
   );

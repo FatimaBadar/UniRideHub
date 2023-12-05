@@ -18,7 +18,6 @@ export default function RequestedRideComponent() {
     // const { rideConfirmation, bookedRide } = useContext(RideContext);
 
     const {bookedRide} = useContext(RideContext)
-    console.log("This is booked Ride:",bookedRide)
 
     const [rideData, setRideData] = useState([]);
     const [rideStatus, setRideStatus] = useState(false); //false-stopped
@@ -30,6 +29,9 @@ export default function RequestedRideComponent() {
     const [ratingValue, setRatingValue] = React.useState(0);
 
     useEffect(() => {
+        console.log("user id: ", userId);
+        console.log("This is booked Ride:",bookedRide)
+
         // getRideData(userId);
     }, [userId])
 
@@ -62,9 +64,8 @@ export default function RequestedRideComponent() {
         }
 
     }
-console.log(bookedRide);
     return (
-        <body classNameName="bodyProfile">
+        <body className="bodyProfile">
             <div className="Profilecard">
                 <div className="upperProfile">
                     <div className="row">
