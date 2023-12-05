@@ -98,9 +98,9 @@ const PreviousRides = () => {
             {userData[index] && <p> <b>Phone Number: </b>{userData[index].mobile}</p>}
             <p> <b>User Type: </b>{userRideData[index].user_type}</p>
             </div>
-            <div className='ride-info'>
+            {/* <div className='ride-info'>
             <p> <b>Ride Status: </b>{userRideData[index].is_active ? 'Active' : 'Inactive'}</p>
-            </div>
+            </div> */}
             <div className='ride-info'>
             <p> <b>Source: </b>{ride.source}</p>
             <p> <b>Destination: </b>{ride.destination}</p>

@@ -8,13 +8,16 @@ import MuiAlert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom';
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+// const Alert = React.forwardRef(function Alert(props, ref) {
+//     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
 
 export default function RequestedRideComponent() {
     const { userId, setUserId } = useContext(UserContext);
-    const { rideConfirmation, rideDetails } = useContext(RideContext);
+//    const { rideConfirmation, rideDetails } = useContext(RideContext);
+    // const { rideConfirmation, bookedRide } = useContext(RideContext);
+
+    const {bookedRide} = useContext(RideContext)
 
     const [rideData, setRideData] = useState([]);
     const [rideStatus, setRideStatus] = useState(false); //false-stopped
@@ -26,6 +29,9 @@ export default function RequestedRideComponent() {
     const [ratingValue, setRatingValue] = React.useState(0);
 
     useEffect(() => {
+        console.log("user id: ", userId);
+        console.log("This is booked Ride:",bookedRide)
+
         // getRideData(userId);
     }, [userId])
 
@@ -58,22 +64,21 @@ export default function RequestedRideComponent() {
         }
 
     }
-
     return (
-        <body classNameName="bodyProfile">
+        <body className="bodyProfile">
             <div className="Profilecard">
                 <div className="upperProfile">
                     <div className="row">
                         <div className="col-8 heading1 ">
-                            <h3 id='requestedride'><b>Requested Ride Details</b></h3>
+                            <h3 id='requestedride'><b>Booked Ride</b></h3>
                         </div>
                         <div className="col-4">
                             <img id='profileImage' className="img-fluid" src="https://i.imgur.com/Rzjor3M.png" />
                         </div>
                     </div>
 
-                    {rideDetails.map((ride, index) => (
-                        <div key={index}>
+                    {bookedRide.map((ride, index) => (
+                        <div key={index}> 
 
                             <div className="d-flex justify-content-center">
                                 <h4 className="font-weight-bold text-center">Ride no. {ride.id} </h4>
@@ -115,10 +120,10 @@ export default function RequestedRideComponent() {
                             </div> */}
 
                             {/* <hr id='profilehr' /> */}
-                            {
-                                rideConfirmation ? (
+                            {/* { */}
+                                {/* // rideConfirmation ? ( */}
                                     <p id='confirm' >
-                                        <Alert severity="success">Requested Ride Confirmed!</Alert>
+                                        {/* <Alert severity="success">Requested Ride Confirmed!</Alert> */}
                                         {/* <hr id='profilehr' /> */}
                                         {rideStartButton ? (
                                             <div className="text-center mt-5">
@@ -134,13 +139,13 @@ export default function RequestedRideComponent() {
                                         ) : ("" // <p>not stopped</p>
                                         )}
                                     </p>
-                                ) : (
-                                    <p id='notconfirm'>
-                                        <div className="lowerProfile">
-                                            <Alert severity="info">Waiting for Confirmation from Rider</Alert>
-                                        </div>
-                                    </p>
-                                )}
+                                {/* // ) : ( */}
+                                    {/* // <p id='notconfirm'>
+                                    //     <div className="lowerProfile">
+                                    //         <Alert severity="info">Waiting for Confirmation from Rider</Alert>
+                                    //     </div>
+                                    // </p>
+                                // )} */}
 
                             {/* <hr id='profilehr' /> */}
                             <div className="d-flex justify-content-center">
@@ -160,7 +165,7 @@ export default function RequestedRideComponent() {
                             <hr id='profilehr' /> <hr id='profilehr'  className='mb-5'/>
 
                         </div>
-                    ))}
+                 ))}
                 </div>
             </div >
         </body>

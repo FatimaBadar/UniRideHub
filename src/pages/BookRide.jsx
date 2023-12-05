@@ -5,6 +5,7 @@ import SearchBar from '../components/SearchBar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import UserContext from '../Context/userContext';
+import RideContext from '../Context/RideContext';
 import './css/bookride.css';
 import axios from 'axios';
 
@@ -33,12 +34,14 @@ const dummyData = [
 ];
 
 const BookRide = () => {
+  const {bookedRide} = useContext(RideContext)
+  console.log("This is booked Ride:",bookedRide)
+
     //const [rides, setRides] = useState(dummyData);
-    const [filteredRides, setFilteredRides] = useState([dummyData]);
+    const [filteredRides, setFilteredRides] = useState([]);
     //const {userId, setUserId} = useContext(UserContext);
     const [userData,setUserData] = useState([]);
     const [rideData, setRideData] = useState([]);
-    //console.log("This is booked Ride:",bookedRide)
     const {jwt} = useContext(UserContext);
 
     useEffect(()=>{
