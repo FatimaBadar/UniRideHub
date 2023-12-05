@@ -17,7 +17,13 @@ const PreviousRides = () => {
   }, [userId])
 
   const getUserRideData = async (id) => {
-    await axios.get( `https://localhost:7249/api/UserRide/GetUserRide/${id}`)
+    await axios.get( `https://localhost:7249/api/UserRide/GetUserRide/${id}`, 
+    {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      })
     .then((response) => {
       console.log(response.data)
       setUserRideData(response.data)
@@ -34,7 +40,13 @@ const PreviousRides = () => {
     const rideIds = data.map((ride) => ride.ride_id);
     const fetchedRideData = [];
     for (const rideId of rideIds) {
-      await axios.get(`https://localhost:7249/api/Ride/Getride/${rideId}`)
+      await axios.get(`https://localhost:7249/api/Ride/Getride/${rideId}`, 
+      {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        })
       .then((response) => {
         fetchedRideData.push(response.data);
       }).catch((error) => {
@@ -54,7 +66,13 @@ const PreviousRides = () => {
     //console.log(userIds)
     const fetchedUserData = [];
     for (const userId of userIds){
-      await axios.get(`https://localhost:7249/api/User/GetUser/${userId}`)
+      await axios.get(`https://localhost:7249/api/User/GetUser/${userId}`, 
+      {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        })
       .then((response)=>{
         //console.log(response.data)
         fetchedUserData.push(response.data.responseData);
@@ -66,9 +84,6 @@ const PreviousRides = () => {
     setUserData(fetchedUserData)
   }
 
-  useEffect(() => {
-    console.log("This is userdata:", userData);
-  }, [userData]);
 
   return (
     <div className="previous-rides">
