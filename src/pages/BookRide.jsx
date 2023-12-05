@@ -4,6 +4,7 @@ import RideDetailCard from '../components/RideDetails';
 import SearchBar from '../components/SearchBar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import UserContext from '../Context/userContext';
 import './css/bookride.css';
 import axios from 'axios';
 
@@ -38,6 +39,7 @@ const BookRide = () => {
     const [userData,setUserData] = useState([]);
     const [rideData, setRideData] = useState([]);
     //console.log("This is booked Ride:",bookedRide)
+    const {jwt} = useContext(UserContext);
 
     useEffect(()=>{
       getRideData();
@@ -48,7 +50,7 @@ const BookRide = () => {
         {
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${jwt}`,
             },
           })
         .then((response) => {
@@ -73,7 +75,7 @@ const BookRide = () => {
           {
               headers: {
                 "Content-Type": "multipart/form-data",
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${jwt}`,
               },
             })
           .then((response)=>{
