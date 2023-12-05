@@ -66,49 +66,49 @@ export default function RequestedRideComponent() {
                 <div className="upperProfile">
                     <div className="row">
                         <div className="col-8 heading1 ">
-                            <h3 id='requestedride'><b>Requested Ride Details</b></h3>
+                            <h3 id='requestedride'><b>Booked Ride</b></h3>
                         </div>
                         <div className="col-4">
                             <img id='profileImage' className="img-fluid" src="https://i.imgur.com/Rzjor3M.png" />
                         </div>
                     </div>
 
-                    {/* {rideDetails.map((ride, index) => ( */}
-                        {/* <div key={index}> */}
+                    {bookedRide.map((ride, index) => (
+                        <div key={index}> 
 
                             <div className="d-flex justify-content-center">
-                                <h4 className="font-weight-bold text-center">Ride no. {bookedRide.id} </h4>
+                                <h4 className="font-weight-bold text-center">Ride no. {ride.id} </h4>
                             </div>
                             {/* <hr /> */}
 
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Source</span>
-                                <span className="text-muted">{bookedRide.source}</span>
+                                <span className="text-muted">{ride.source}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Destination</span>
-                                <span className="text-muted">{bookedRide.destination}</span>
+                                <span className="text-muted">{ride.destination}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Mid Routes</span>
-                                <span className="text-muted">{bookedRide.mid_routes}</span>
+                                <span className="text-muted">{ride.mid_routes}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Fare</span>
-                                <span className="text-muted">{bookedRide.fare}</span>
+                                <span className="text-muted">{ride.fare}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Total Seats</span>
-                                <span className="text-muted">{bookedRide.total_seats}</span>
+                                <span className="text-muted">{ride.total_seats}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between mb-2">
                                 <span className="font-weight-bold">Timings</span>
-                                <span className="text-muted">{bookedRide.timings}</span>
+                                <span className="text-muted">{ride.timings}</span>
                             </div>
 
                             {/* <div className="lowerProfile">
@@ -116,10 +116,10 @@ export default function RequestedRideComponent() {
                             </div> */}
 
                             {/* <hr id='profilehr' /> */}
-                            {
-                                rideConfirmation ? (
+                            {/* { */}
+                                {/* // rideConfirmation ? ( */}
                                     <p id='confirm' >
-                                        <Alert severity="success">Requested Ride Confirmed!</Alert>
+                                        {/* <Alert severity="success">Requested Ride Confirmed!</Alert> */}
                                         {/* <hr id='profilehr' /> */}
                                         {rideStartButton ? (
                                             <div className="text-center mt-5">
@@ -135,13 +135,13 @@ export default function RequestedRideComponent() {
                                         ) : ("" // <p>not stopped</p>
                                         )}
                                     </p>
-                                ) : (
-                                    <p id='notconfirm'>
-                                        <div className="lowerProfile">
-                                            <Alert severity="info">Waiting for Confirmation from Rider</Alert>
-                                        </div>
-                                    </p>
-                                )}
+                                {/* // ) : ( */}
+                                    {/* // <p id='notconfirm'>
+                                    //     <div className="lowerProfile">
+                                    //         <Alert severity="info">Waiting for Confirmation from Rider</Alert>
+                                    //     </div>
+                                    // </p>
+                                // )} */}
 
                             {/* <hr id='profilehr' /> */}
                             <div className="d-flex justify-content-center">
@@ -160,8 +160,8 @@ export default function RequestedRideComponent() {
                             </div>
                             <hr id='profilehr' /> <hr id='profilehr'  className='mb-5'/>
 
-                        {/* </div> */}
-                    {/* ))} */}
+                        </div>
+                 ))}
                 </div>
             </div >
         </body>

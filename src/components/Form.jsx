@@ -79,12 +79,13 @@ export default function Form() {
 
     // Make a GET request to get all rides
     axios
-      .get("https://localhost:7249/api/CreateRide",{
-        headers: {
-          "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${jwt}`,
-        },
-      })
+      .get("https://localhost:7249/api/Ride/Getride")
+      // ,{
+      //   headers: {
+      //     "Content-Type": "multipart/form-data",
+      //     // Authorization: `Bearer ${jwt}`,
+      //   },
+      // })
       .then((response) => {
         // Find the ride with the highest ID
         const highestId = Math.max(...response.data.map((ride) => ride.id));
@@ -122,10 +123,11 @@ export default function Form() {
         formData.append("userId", userId);
 
         axios
-          .post("https://localhost:7249/api/CreateRide", formData, {
+          .post("https://localhost:7249/api/Ride", formData
+          , {
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${jwt}`,
+              // Authorization: `Bearer ${jwt}`,
             },
           })
           .then((response) => {

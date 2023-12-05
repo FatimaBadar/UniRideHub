@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 
 const RideState = (props) => {
     const [rideConfirmation, setRideConfirmation] = useState(false);
+    const [bookedRide, setBookedRide] = useState([]);
     // const [rideDetails, setRideDetails] = useState([
     //     {
     //         id: 1,
@@ -23,7 +24,6 @@ const RideState = (props) => {
     //         timings: "12/01/2023"
     //     }
     // ]); 
-    const [bookedRide, setBookedRide] = useState([]);
     return(
         <RideContext.Provider value={{rideConfirmation, setRideConfirmation, bookedRide, setBookedRide}}>
             {props.children}
