@@ -79,7 +79,12 @@ export default function Form() {
 
     // Make a GET request to get all rides
     axios
-      .get("https://localhost:7249/api/CreateRide")
+      .get("https://localhost:7249/api/CreateRide",{
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         // Find the ride with the highest ID
         const highestId = Math.max(...response.data.map((ride) => ride.id));
