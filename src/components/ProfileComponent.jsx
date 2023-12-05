@@ -17,8 +17,13 @@ export default function ProfileComponent() {
 
     const getUserData = async (id) => {
         // console.log("user id: ", id);
-        await axios.get(`https://localhost:7249/api/User/GetUser/${id}`)
-        // await axios.get("https://mocki.io/v1/8ce0cf8b-9558-4792-badc-10a478cf9159")
+        await axios.get(`https://localhost:7249/api/User/GetUser/${id}`, 
+        {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
             .then((response) => {      
                console.log(response.data.responseData)
                 setUserData(response.data.responseData)
