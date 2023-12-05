@@ -2,7 +2,7 @@ import RideContext from "./RideContext";
 import { useState, useEffect } from "react";
 
 const RideState = (props) => {
-    const [rideConfirmation, setRideConfirmation] = useState(true);
+    const [rideConfirmation, setRideConfirmation] = useState(false);
     // const [rideDetails, setRideDetails] = useState([
     //     {
     //         id: 1,

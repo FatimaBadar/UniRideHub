@@ -14,7 +14,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 export default function RequestedRideComponent() {
     const { userId, setUserId } = useContext(UserContext);
-    const { rideConfirmation, rideDetails } = useContext(RideContext);
+//    const { rideConfirmation, rideDetails } = useContext(RideContext);
+    const { rideConfirmation, bookedRide } = useContext(RideContext);
 
     const [rideData, setRideData] = useState([]);
     const [rideStatus, setRideStatus] = useState(false); //false-stopped
@@ -72,42 +73,42 @@ export default function RequestedRideComponent() {
                         </div>
                     </div>
 
-                    {rideDetails.map((ride, index) => (
-                        <div key={index}>
+                    {/* {rideDetails.map((ride, index) => ( */}
+                        {/* <div key={index}> */}
 
                             <div className="d-flex justify-content-center">
-                                <h4 className="font-weight-bold text-center">Ride no. {ride.id} </h4>
+                                <h4 className="font-weight-bold text-center">Ride no. {bookedRide.id} </h4>
                             </div>
                             {/* <hr /> */}
 
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Source</span>
-                                <span className="text-muted">{ride.source}</span>
+                                <span className="text-muted">{bookedRide.source}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Destination</span>
-                                <span className="text-muted">{ride.destination}</span>
+                                <span className="text-muted">{bookedRide.destination}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Mid Routes</span>
-                                <span className="text-muted">{ride.mid_routes}</span>
+                                <span className="text-muted">{bookedRide.mid_routes}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Fare</span>
-                                <span className="text-muted">{ride.fare}</span>
+                                <span className="text-muted">{bookedRide.fare}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between">
                                 <span className="font-weight-bold">Total Seats</span>
-                                <span className="text-muted">{ride.total_seats}</span>
+                                <span className="text-muted">{bookedRide.total_seats}</span>
                             </div>
                             <hr id='profilehr' />
                             <div className="d-flex justify-content-between mb-2">
                                 <span className="font-weight-bold">Timings</span>
-                                <span className="text-muted">{ride.timings}</span>
+                                <span className="text-muted">{bookedRide.timings}</span>
                             </div>
 
                             {/* <div className="lowerProfile">
@@ -159,8 +160,8 @@ export default function RequestedRideComponent() {
                             </div>
                             <hr id='profilehr' /> <hr id='profilehr'  className='mb-5'/>
 
-                        </div>
-                    ))}
+                        {/* </div> */}
+                    {/* ))} */}
                 </div>
             </div >
         </body>
