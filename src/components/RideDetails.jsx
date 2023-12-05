@@ -5,7 +5,7 @@ import {useState, useContext} from 'react';
 import RideContext from '../Context/RideContext';
 
 
-const RideDetailCard = ({ ride }) => {
+const RideDetailCard = ({ ride, user }) => {
 
   const {bookedRide, setBookedRide} = useContext(RideContext)
   const [isBooked, setIsBooked] = useState(false)
@@ -18,17 +18,18 @@ const RideDetailCard = ({ ride }) => {
     }
   };
 
+  console.log("This is User:", user)
 
   return (
     <div className="all-rides">
     <div className="ride-card">
-      <p>Name: {ride.name}</p>
-      <p>Phone Number: {ride.phoneNumber}</p>
-      <p>Ride Time: {ride.rideTime}</p>
-      <p>Car Model: {ride.carModel}</p>
+    {user && <p> Name: {user.first_name + " " + user.last_name}</p>}
+    {user && <p> Phone Number: {user.mobile}</p>}
+      <p>Ride Time: {ride.time + " " + ride.date}</p>
+      <p>Available Seats: {ride.total_Seats}</p>
       <p>Source: {ride.source}</p>
       <p>Destination: {ride.destination}</p>
-      <p>Middle Route: {ride.middleRoutes.join(', ')}</p>
+      <p>Middle Route: {ride.mid_routes}</p>
       <button className='book-button' onClick={handleBook} disabled={isBooked}>{isBooked ? 'Booked' : 'Book'}</button>
     </div>
     </div>

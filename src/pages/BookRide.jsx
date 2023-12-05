@@ -1,11 +1,11 @@
 // App.js
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import RideDetailCard from '../components/RideDetails';
 import SearchBar from '../components/SearchBar';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import './css/bookride.css';
-import RideContext from '../Context/RideContext';
+import axios from 'axios';
 
 const dummyData = [
   // Your dummy ride data here
@@ -32,13 +32,52 @@ const dummyData = [
 ];
 
 const BookRide = () => {
-    const [rides, setRides] = useState(dummyData);
-    const [filteredRides, setFilteredRides] = useState(dummyData);
-    const {bookedRide} = useContext(RideContext)
-    console.log("This is booked Ride:",bookedRide)
+    //const [rides, setRides] = useState(dummyData);
+    const [filteredRides, setFilteredRides] = useState([dummyData]);
+    //const {userId, setUserId} = useContext(UserContext);
+    const [userData,setUserData] = useState([]);
+    const [rideData, setRideData] = useState([]);
+    //console.log("This is booked Ride:",bookedRide)
+
+    useEffect(()=>{
+      getRideData();
+    },[])
+
+    const getRideData = async () => {
+        await axios.get(`https://localhost:7249/api/Ride/Getride`)
+        .then((response) => {
+          console.log(response.data)
+          setRideData(response.data)
+          setFilteredRides(response.data)
+        }).catch((error) => {
+          console.log(error)
+        })
+      }
+    
+      useEffect(() => {
+        getUserData(rideData);
+      },[rideData])
+    
+      const getUserData = async (data) => {
+        const userIds = data.map((user) => user.userId);
+        //console.log(userIds)
+        const fetchedUserData = [];
+        for (const userId of userIds){
+          await axios.get(`https://localhost:7249/api/User/GetUser/${userId}`)
+          .then((response)=>{
+            //console.log(response.data)
+            fetchedUserData.push(response.data.responseData);
+          }).catch((error) => {
+            console.log(error)
+          })
+        }
+        console.log(fetchedUserData)
+        setUserData(fetchedUserData)
+      }
+
     const filterRides = (filters) => {
       const { filterType, searchTerm } = filters;
-      const filtered = rides.filter((ride) => {
+      const filtered = rideData.filter((ride) => {
         switch (filterType) {
           case 'source':
             return ride.source.toLowerCase().includes(searchTerm.toLowerCase());
@@ -58,7 +97,7 @@ const BookRide = () => {
     };
   
     const resetFilters = () => {
-      setFilteredRides(rides);
+      setFilteredRides(rideData);
     };
   
     return (
@@ -68,7 +107,7 @@ const BookRide = () => {
         <SearchBar onFilter={filterRides} onReset={resetFilters} />
         <div className="ride-list">
           {filteredRides.map((ride, index) => (
-            <RideDetailCard key={index} ride={ride} />
+            <RideDetailCard key={index} ride={ride} user={userData[index]} />
           ))}
         </div>
       </div>
