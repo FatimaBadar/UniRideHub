@@ -6,7 +6,7 @@ import Rating from '@mui/material/Rating';
 import './css/profile.css';
 
 export default function ProfileComponent() {
-    const { userId, setUserId } = useContext(UserContext);
+    const { userId, jwt } = useContext(UserContext);
     const [userData, setUserData] = useState([]);
     const [showRating, setShowRating] = useState(false);
     const [rating, setRating] = useState(1);
@@ -21,7 +21,7 @@ export default function ProfileComponent() {
         {
             headers: {
               "Content-Type": "multipart/form-data",
-              Authorization: `Bearer ${token}`,
+              Authorization: `Bearer ${jwt}`,
             },
           })
             .then((response) => {      
