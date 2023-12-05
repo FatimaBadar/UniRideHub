@@ -8,14 +8,17 @@ import MuiAlert from '@mui/material/Alert';
 import Rating from '@mui/material/Rating';
 import { Link } from 'react-router-dom';
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+// const Alert = React.forwardRef(function Alert(props, ref) {
+//     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+// });
 
 export default function RequestedRideComponent() {
     const { userId, setUserId } = useContext(UserContext);
 //    const { rideConfirmation, rideDetails } = useContext(RideContext);
-    const { rideConfirmation, bookedRide } = useContext(RideContext);
+    // const { rideConfirmation, bookedRide } = useContext(RideContext);
+
+    const {bookedRide} = useContext(RideContext)
+    console.log("This is booked Ride:",bookedRide)
 
     const [rideData, setRideData] = useState([]);
     const [rideStatus, setRideStatus] = useState(false); //false-stopped
@@ -59,7 +62,7 @@ export default function RequestedRideComponent() {
         }
 
     }
-
+console.log(bookedRide);
     return (
         <body classNameName="bodyProfile">
             <div className="Profilecard">

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 const RideState = (props) => {
     const [rideConfirmation, setRideConfirmation] = useState(false);
     const [bookedRide, setBookedRide] = useState([]);
-    // const [rideDetails, setRideDetails] = useState([
+    // const [bookedRide, setBookedRide] = useState([
     //     {
     //         id: 1,
     //         source: "PECHS",

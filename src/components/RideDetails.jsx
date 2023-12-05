@@ -10,17 +10,19 @@ const RideDetailCard = ({ ride, user }) => {
   const {bookedRide, setBookedRide, rideConfirmation, setRideConfirmation} = useContext(RideContext)
   const [isBooked, setIsBooked] = useState(false)
   const handleBook = () => {
+    // console.log("ride check ", ride);
     // if (bookedRide.length === 0) {
       setBookedRide([...bookedRide, ride]);
+      console.log("booked ride: ", bookedRide);
       setIsBooked(true); // disable the button
       setRideConfirmation(true);
     // } 
     // else {
-    //   alert('You have already booked a ride.');
+      // alert('You have already booked a ride.');
     // }
   };
 
-  console.log("This is User:", user)
+  // console.log("This is User:", user)
 
   return (
     <div className="all-rides">
