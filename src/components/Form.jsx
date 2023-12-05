@@ -1,4 +1,4 @@
-import React, { useState, useRef,useContext } from "react";
+import React, { useState, useRef, useContext } from "react";
 import {
   TextField,
   Button,
@@ -10,8 +10,7 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import UserContext from '../Context/userContext';
-
+import UserContext from "../Context/userContext";
 
 import "./css/form.css";
 
@@ -84,7 +83,7 @@ export default function Form() {
       .then((response) => {
         // Find the ride with the highest ID
         const highestId = Math.max(...response.data.map((ride) => ride.id));
-      
+
         // Increment the highest ID by one
         const newId = highestId + 1;
         console.log(newId);
@@ -102,10 +101,9 @@ export default function Form() {
           fare,
           mapImageFilename
         );
-  
+
         let formData = new FormData();
 
-        
         formData.append("id", newId);
         formData.append("source", source);
         formData.append("destination", destination);
@@ -114,15 +112,15 @@ export default function Form() {
         formData.append("time", timeWithSeconds);
         formData.append("total_Seats", availableSeats);
         formData.append("fare", fare);
-        formData.append("MapImageFileName", mapImageFilename); 
-        formData.append("file", fileInput.current.files[0]); 
+        formData.append("MapImageFileName", mapImageFilename);
+        formData.append("file", fileInput.current.files[0]);
         formData.append("userId", userId);
-
 
         axios
           .post("https://localhost:7249/api/CreateRide", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
             },
           })
           .then((response) => {
