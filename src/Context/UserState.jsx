@@ -2,8 +2,8 @@ import UserContext from "./userContext";
 import { useState, useEffect } from "react";
 
 const UserState = (props) => {
-    //const [userId, setUserId] = useState(Number(localStorage.getItem("id")));
-    const [userId, setUserId] = useState(1);
+    const [userId, setUserId] = useState(Number(localStorage.getItem("id")));
+    //const [userId, setUserId] = useState(1);
     const [jwt, setJwt] = useState(localStorage.getItem("jwt"))
 
     // useEffect(() => {

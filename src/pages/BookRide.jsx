@@ -44,7 +44,13 @@ const BookRide = () => {
     },[])
 
     const getRideData = async () => {
-        await axios.get(`https://localhost:7249/api/Ride/Getride`)
+        await axios.get(`https://localhost:7249/api/Ride/Getride`, 
+        {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${token}`,
+            },
+          })
         .then((response) => {
           console.log(response.data)
           setRideData(response.data)
@@ -63,7 +69,13 @@ const BookRide = () => {
         //console.log(userIds)
         const fetchedUserData = [];
         for (const userId of userIds){
-          await axios.get(`https://localhost:7249/api/User/GetUser/${userId}`)
+          await axios.get(`https://localhost:7249/api/User/GetUser/${userId}`, 
+          {
+              headers: {
+                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${token}`,
+              },
+            })
           .then((response)=>{
             //console.log(response.data)
             fetchedUserData.push(response.data.responseData);
